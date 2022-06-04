@@ -1,0 +1,39 @@
+/* Common CSS across all pages */
+body {
+  background-color: #1c1c1c !important;
+  font-family: monospace !important;
+}
+
+.navbar {
+  background-color: #101010 !important;
+}
+
+#companyLogo {
+  width: 180px;
+  height: 50px;
+}
+
+.nav-link {
+  color: #747474 !important;
+  font-family: monospace;
+}
+
+.nav-link:hover {
+  color: white !important;
+}
+
+.nav-link:focus {
+  color: white !important;
+}
+
+.nav-link:active {
+  color: white !important;
+}
+
+/* Fix mobile responsiveness in super small phone sizes */
+@media screen and (max-width: 276px) {
+  #companyLogo {
+    width: 50vw;
+    height: 15vw;
+  }
+}
