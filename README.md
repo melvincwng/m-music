@@ -20,4 +20,4 @@ jQuery, Bootstrap, DOMPurify
 
 https://melvincwng.github.io/m-music/
 
-<img src="https://github.com/melvincwng/m-music/blob/master/img/demo.jpg"/>
+<img src="https://github.com/melvincwng/m-music/blob/change-demo-image/img/demo.jpg"/>
