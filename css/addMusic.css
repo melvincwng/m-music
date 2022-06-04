@@ -1,0 +1,143 @@
+/* 
+  addMusic.html CSS
+  Navbar based on developer console is 61px in height, footer is 29px
+  Hence when providing a height so that "align-items: center" can work, need to factor in the 90px 
+*/
+
+.center-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100vh - 90px);
+  align-items: center;
+}
+
+#addNewMusicBtn:hover {
+  background-color: lightgray;
+}
+
+#addNewMusicBtn:focus {
+  box-shadow: none;
+}
+
+#addMusicFormDiv {
+  background-color: snow;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 16px;
+  width: 100%;
+  margin: auto;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.6);
+}
+
+#addMusicForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.individualDiv {
+  display: flex;
+}
+
+#div_left {
+  width: 25%;
+}
+
+#div_right {
+  width: 75%;
+}
+
+p {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+textarea {
+  width: 97.5%;
+  margin-bottom: 8px;
+  resize: vertical;
+}
+
+input,
+select,
+textarea {
+  padding: 2px 4px;
+  border: 1px solid silver;
+  border-radius: 5px;
+}
+
+input[type="radio"] {
+  margin: 0px 2px;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+}
+
+label {
+  margin-right: 6px;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5em;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  font-size: 16px;
+  text-decoration: none;
+  border: none;
+}
+
+.button:hover {
+  border: none;
+  background: #6610f2;
+  cursor: pointer;
+}
+
+#btnReset {
+  width: 65.8px;
+  margin-left: 8px;
+}
+
+#btnSubmit,
+#btnReset {
+  margin-top: 8px;
+}
+
+#maxCharactersLimitReached {
+  color: red;
+}
+
+#divMessage {
+  margin-top: 16px;
+  color: red;
+}
+
+/* Mobile responsiveness CSS  */
+@media screen and (max-width: 768px) {
+  #addMusicFormDiv {
+    width: 100%;
+  }
+}
+
+/* Adjust mobile responsiveness/view of Add Music Form in small phones <= 320px in width - e.g. iphone 4 & smaller */
+@media screen and (max-width: 320px) {
+  .individualDiv {
+    flex-direction: column;
+  }
+
+  p {
+    margin-bottom: 8px !important;
+  }
+
+  #div_left,
+  #div_right {
+    width: 100%;
+  }
+}
