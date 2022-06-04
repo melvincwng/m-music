@@ -17,13 +17,13 @@ function displayMusics() {
     let tooltipString = "";
 
     for (let musicDetail of individualMusicDetailArray) {
-      musicDetail = musicDetail.replace("musicTitle=", "Title:");
-      musicDetail = musicDetail.replace("musicGenre=", "Genre:");
-      musicDetail = musicDetail.replace("musicArtist=", "Artist:");
-      musicDetail = musicDetail.replace("musicRelease=", "Release:");
-      musicDetail = musicDetail.replace("musicDuration=", "Duration:");
-      musicDetail = musicDetail.replace("musicURL=", "URL:");
-      musicDetail = musicDetail.replace("musicDescription=", "Description:");
+      musicDetail = musicDetail.replace("musicTitle=", "Title: ");
+      musicDetail = musicDetail.replace("musicGenre=", "Genre: ");
+      musicDetail = musicDetail.replace("musicArtist=", "Artist: ");
+      musicDetail = musicDetail.replace("musicRelease=", "Release: ");
+      musicDetail = musicDetail.replace("musicDuration=", "Duration: ");
+      musicDetail = musicDetail.replace("musicURL=", "URL: ");
+      musicDetail = musicDetail.replace("musicDescription=", "Description: ");
       musicDetail = musicDetail.replaceAll("+", " ");
       formattedArray.push(musicDetail);
     }

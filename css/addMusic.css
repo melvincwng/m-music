@@ -1,14 +1,14 @@
 /* 
   addMusic.html CSS
   Navbar based on developer console is 61px in height, footer is 29px
-  Hence when providing a height so that "align-items: center" can work, need to factor in the 90px 
+  Hence when providing a height so that "align-items: center" can work, need to factor in the 89px 
 */
 
 .center-div {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: calc(100vh - 90px);
+  height: calc(100vh - 89px);
   align-items: center;
 }
 
