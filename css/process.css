@@ -2,7 +2,6 @@
   padding: 16px;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 90px);
   color: white;
 }
 
