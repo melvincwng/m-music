@@ -22,4 +22,4 @@ Reference:
 https://reverseengineering.stackexchange.com/questions/2331/how-do-i-get-the-location-of-the-original-audio-video-file-embedded-on-a-webpage
 
 
-© 2022 Melvin Ng | This website/project is meant to be submitted as an educational/assignment project. | You are not allowed to copy, reproduce, republish or transfer any of the code in this repository unless given permission or provided by the original author/developer. | All rights reserved |
+© 2022 Melvin Ng | This website/project is meant to be submitted as an educational/assignment project for SP | All rights reserved | 
