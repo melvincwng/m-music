@@ -2,11 +2,16 @@
   padding: 16px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 32px;
 }
 
-ol {
+details {
   font-size: 15px;
   color: white;
   word-wrap: break-word;
   text-align: justify;
+}
+
+summary {
+  font-size: 20px;
 }

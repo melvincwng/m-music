@@ -39,6 +39,7 @@ function displayMusics() {
         style="width: 275px; height: 275px"
         alt="Music Image"
         title="${tooltipString}"
+        class="musicImage"
       />
     `;
 
