@@ -1,0 +1,87 @@
+<html>
+<head>
+<style>	
+	h1 {
+		color: #7157ff;
+	}
+
+	hr {
+		display: block;
+		border: 0;
+		border-top: 3px solid #f90;
+		padding: 0; 
+	}
+	
+	textarea {
+		width: 70%;
+	}
+	
+	#div_main {
+		font-family: Sans-serif;
+		margin: auto;
+		margin-top: 30px;
+		width: 500px;
+	}
+	
+	#div_left {
+		width: 150px;
+		display: inline-block;
+		float: left;
+	}
+	
+	#div_left p {
+		margin-bottom: 19px;
+	}
+	
+	#div_right {
+		width: 350px;
+		display: inline-block;
+		float: right;
+	}
+	
+	.clear {
+		clear: both;
+	}
+</style>
+</head>
+<body>
+<div id="div_main">
+	<h1>
+		Add Song
+	</h1>
+	<hr>
+	<form action="process.html" method="POST">
+	<div id="div_left">
+		<p>Title:</p>
+		<p>Genre:</p>
+		<p>Artist:</p>
+		<p>Release:</p>
+		<p>Duration (mi.ss):</p>
+	</div>
+	<div id="div_right">
+		<p><input type="text" id="txtTitle" name="txtTitle"></p>
+		<p>
+		<select id="selectType">
+			<option> Select a Type</option>
+			<option value="classical">Classical</option>
+			<option value="funk">Funk</option>
+			<option value="rock">Rock</option>
+			<option value="pop">Pop</option>
+		</select>
+		</p>
+		<p><input type="text" id="txtArtist" name="txtArtist"></p>
+		<p><input type="radio" id="release_Yes" name="install"><label for="release_Yes">Yes</label><input type="radio" id="release_No" name="install"><label for="release_No">No</label></p>
+		<p><input type="text" id="txtDuration" name="txtDuration"></p>
+	</div>
+	<div class="clear"></div>
+	Description:
+	<br>
+	<textarea id="txtDescription" name="txtDescription"></textarea>
+	<br>
+	<input type="submit" id="btnSubmit">
+	</form>
+	<div id="divMessage">
+	</div>
+</div>
+</body>
+</html>
