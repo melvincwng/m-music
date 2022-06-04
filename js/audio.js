@@ -1,3 +1,4 @@
+// Part 1:
 // This part of the script grabs all the musicDetails stored in localStorage (if any), which is in string format
 // Then, we split that string from localStorage by the "---(NEXT_MUSIC)---" separator which we added earlier
 // To get an array of individual musics (listOfMusics)
@@ -5,6 +6,7 @@ let listOfMusics =
   window.localStorage.getItem("musicDetails")?.split("---(NEXT_MUSIC)---") ||
   [];
 
+// Part 2:
 // A function written to display the music from localStorage
 function displayMusics() {
   const musicBody = document.getElementById("musicBody");
@@ -15,6 +17,7 @@ function displayMusics() {
     const individualMusicDetailArray = music.split("---(SPACING)---");
     let formattedArray = [];
     let tooltipString = "";
+    let musicID = i + 1;
 
     for (let musicDetail of individualMusicDetailArray) {
       musicDetail = musicDetail.replace("musicTitle=", "Title: ");
@@ -33,45 +36,53 @@ function displayMusics() {
     }
 
     musicBodyInnerHTML += `
-    <div style="display: flex; flex-direction: column" class="musicElement">
-      <img
-        src="./img/defaultImage.png"
-        style="width: 275px; height: 275px"
-        alt="Music Image"
-        title="${tooltipString}"
-        class="musicImage"
-      />
+      <div style="display: flex; flex-direction: column" class="musicElement">
     `;
 
-    for (let i = 0; i < formattedArray.length; i++) {
+    for (let j = 0; j < formattedArray.length; j++) {
       /* 
         Advanced feature for Assignment 1:
         Use DOMPurify library to sanitize any dirty user inputs as prevention of XSS
         E.g. <img src=a onerror=alert('XSS')> -> adding this as part of .innerHTML will trigger XSS!
       */
-      let sanitizedMusicDetail = DOMPurify.sanitize(formattedArray[i]);
+      let sanitizedMusicDetail = DOMPurify.sanitize(formattedArray[j]);
       let sanitizedMusicDetailKey = sanitizedMusicDetail.split(":")[0];
       let sanitizedMusicDetailValue = sanitizedMusicDetail.split(":")[1];
 
       switch (sanitizedMusicDetailKey) {
         case "Title":
           musicBodyInnerHTML += `
-            <p 
-              style="font-size: 13px; margin: 0px 0px 2px"
-              >
-                ${sanitizedMusicDetailValue}
-            </p>`;
+            <img
+              src="./img/defaultImage.png"
+              style="width: 275px; height: 275px"
+              alt="Music Image"
+              title="${tooltipString}"
+              class="musicImage"
+            />
+            <div style="display: flex; justify-content: space-between">
+              <div>
+                <p 
+                  style="font-size: 13px; margin: 0px 0px 2px"
+                  >
+                    ${sanitizedMusicDetailValue}
+                </p>
+            `;
           break;
         case "Artist":
           musicBodyInnerHTML += `
-            <p
-              style="
-              font-size: 11px;
-              color: #747474 !important;
-              margin: 0px 0px 4px;"
-            >
-              ${sanitizedMusicDetailValue}
-            </p>
+                <p
+                  style="
+                  font-size: 11px;
+                  color: #747474 !important;
+                  margin: 0px 0px 4px;"
+                >
+                  ${sanitizedMusicDetailValue}
+                </p>
+              </div>
+              <div>
+                <img src="./img/deleteIcon.svg" alt="Delete Symbol" width="32px" height="32px" style="cursor:pointer" onclick="deleteSelectedMusic(event)" id="${musicID}">
+              </div>
+            </div>
           `;
           break;
         case "URL":
@@ -106,9 +117,56 @@ function displayMusics() {
   musicBody.innerHTML = musicBodyInnerHTML;
 }
 
+// Part 3:
 // If listOfMusics is not an empty array => then we display the musics in the homepage
 listOfMusics.length && displayMusics();
 
+// Part 4:
+// A function written to delete the selected music
+function deleteSelectedMusic(event) {
+  const deletedMusicId = parseInt(event.target.id);
+
+  // Appends an id temporarily to each music element in the original listOfMusics array
+  let modifiedListOfMusics = listOfMusics.map(
+    (music, index) => (music += `---(SPACING)---id=${index + 1}`)
+  );
+
+  // Find out what is the music element that's about to be deleted
+  let deletedMusic = modifiedListOfMusics
+    .find((music) => music.includes(`id=${deletedMusicId}`))
+    .replace(`---(SPACING)---id=${deletedMusicId}`, "");
+
+  // If removing the last music/song in the localStorage, it will not have a ---(NEXT_MUSIC)--- appended
+  // The other songs (other than the last one) will have that ---(NEXT_MUSIC)--- string appended
+  // Hence, need this filtering condition for the deletion of music logic to work properly
+  deletedMusic =
+    deletedMusicId === listOfMusics.length
+      ? deletedMusic
+      : deletedMusic + "---(NEXT_MUSIC)---";
+
+  // Remove the music which user clicked to delete
+  let newMusicDetails = localStorage
+    .getItem("musicDetails")
+    .replace(deletedMusic, "");
+
+  // Save the new music details (which saves the removal of the deleted music)
+  localStorage.setItem("musicDetails", newMusicDetails);
+
+  // Alert the user that the song is deleted and then refresh the page
+  alert("Music deleted 🗑️!");
+  window.location.reload();
+}
+
+// Part 5:
+// A function to reset music body in index.html
+// If there are no music stored in localStorage, we then "reset" musicBody (a div container)'s innerHTML to contain 'Empty' string
+function resetMusicBody() {
+  document.getElementById("musicBody").innerHTML = "Empty";
+  localStorage.removeItem("musicDetails");
+}
+!localStorage.getItem("musicDetails") && resetMusicBody();
+
+// Part 6:
 // This part of the script only allows 1 audio to be played at any time (prevent multiple audios from being played)
 const audios = document.querySelectorAll("audio");
 
@@ -124,6 +182,7 @@ function stopOtherAudios(event) {
   }
 }
 
+// Part 7:
 // This part of the script also adds a padding-right of 16px for each music element ONLY IN desktop view.
 // And removes that 16px padding-right in mobile view
 function isMobileView() {
