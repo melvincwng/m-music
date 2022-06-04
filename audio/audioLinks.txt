@@ -2,7 +2,7 @@
 
 List of music URLs (free to use):
 
-1)  http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3
+1)  https://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3
 2)  https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3
 3)  https://cdn.pixabay.com/audio/2022/05/28/audio_b79a40aa49.mp3
 4)  https://cdn.pixabay.com/audio/2022/05/16/audio_333c151dc6.mp3
