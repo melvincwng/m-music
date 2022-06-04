@@ -26,11 +26,11 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- a) jQuery source code file & b) jQuery validation and JS validation scripts, c) Additional scripts will be added here -->
+    <!-- a) JS validation script & b) jQuery source code file & jQuery validation script, c) Additional scripts will be added here -->
+    <script type="text/javascript" src="js/jsValidation.js"></script>
     <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="js/jQueryValidation.js"></script>
-    <script type="text/javascript" src="js/jsValidation.js"></script>
-    <script type="text/javascript" src="js/addEventListeners.js"></script>
+    <script type="text/javascript" src="js/removeErrorMessages.js"></script>
   </head>
   <body>
     <!-- Bootstrap Navigation Bar, class py-0 reduces the original navbar height based on Bootstrap's documentation -->
@@ -133,8 +133,8 @@
                         <p>
                           <input
                             type="text"
-                            id="musicName"
-                            name="musicName"
+                            id="musicTitle"
+                            name="musicTitle"
                             maxlength="100"
                           />
                         </p>
@@ -146,14 +146,14 @@
                       </div>
                       <div id="div_right">
                         <p>
-                          <select id="musicType" name="musicType">
+                          <select id="musicGenre" name="musicGenre">
                             <!--
                               a) The first three option tags are not invalid options.
                                 - The first option tag, if selected, will show 'Genre of music is required.' error
                                 - While the second and third option tag(s), if selected, will show 'Genre must be a valid music genre during submission.' error
                               b) There are only FOUR valid music types - they are "Classical", "Funk", "Rock", and "Pop".
                             -->
-                            <option value="">Select a Type</option>
+                            <option value="">Select a Genre</option>
                             <option value="invalid">Invalid music type</option>
                             <option value="invalid">City Hall</option>
                             <option value="Classical">Classical</option>
@@ -213,20 +213,6 @@
                             id="musicDuration"
                             name="musicDuration"
                             maxlength="10"
-                          />
-                        </p>
-                      </div>
-                    </div>
-                    <div class="individualDiv">
-                      <div id="div_left">
-                        <p>Image URL:</p>
-                      </div>
-                      <div id="div_right">
-                        <p>
-                          <input
-                            type="text"
-                            id="musicImageURL"
-                            name="musicImageURL"
                           />
                         </p>
                       </div>
