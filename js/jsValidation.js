@@ -48,10 +48,19 @@ function validateMusicDetails(event) {
   // 2) Validation check to check for 'invalid' music genres
   const invalidMusicGenre = musicGenre === "invalid";
 
-  // 3) Validation check to check whether music duration is of the correct format (min.ss) (e.g. 12.30 --> 12min 30sec)
+  // 3a) Validation check to check whether music duration is of the correct format (min.ss) (e.g. 12.30 --> 12min 30sec)
+  // 3b) Added additional validation checks for music duration:
+  //      - i)  Cannot be negative (e.g. CANNOT be -1.33 - cause TIME CANNOT BE NEGATIVE)
+  //      - ii) Cannot start with two or more 0s (e.g. 01.33 is OK, but NOT 00931.33 - doesn't make sense to make >= 2 zeros in front)
   let musicDurationValidFormat, secondsCorrectFormat;
   const musicDurationNumber = musicDuration !== "" && !isNaN(musicDuration);
-  if (musicDurationNumber) {
+  const musicDurationNumberNegative = musicDuration < 0;
+  const musicStartsWithAtLeastTwoZeros = musicDuration.startsWith("00");
+  if (
+    musicDurationNumber &&
+    !musicDurationNumberNegative &&
+    !musicStartsWithAtLeastTwoZeros
+  ) {
     const indexOfDotSymbol = musicDuration.indexOf(".");
 
     if (indexOfDotSymbol === -1) {
