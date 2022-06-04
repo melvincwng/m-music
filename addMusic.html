@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Add favicon & change title of document here -->
+    <title>M Music | Add Music</title>
+    <link rel="icon" href="./img/favicon.svg" sizes="32x32" type="image/svg" />
+
+    <!--Author defined stylesheets (my external CSS stylesheets)-->
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/addMusic.css" />
+
+    <!-- Bootstrap CSS & JS files will be delivered via CDN, using Bootstrap for components such as Navbar & Modal -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- a) jQuery source code file & b) jQuery validation and JS validation scripts, c) Additional scripts will be added here -->
+    <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/jQueryValidation.js"></script>
+    <script type="text/javascript" src="js/jsValidation.js"></script>
+    <script type="text/javascript" src="js/addEventListeners.js"></script>
+  </head>
+  <body>
+    <!-- Bootstrap Navigation Bar, class py-0 reduces the original navbar height based on Bootstrap's documentation -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-0">
+      <div class="container-fluid">
+        <!-- A section in the Bootstrap navbar to insert company logo -->
+        <a class="navbar-brand" href="index.html"
+          ><img src="./img/logo.png" alt="Company logo" id="companyLogo"
+        /></a>
+
+        <!-- Bootstrap hamburger button (only appear in phone view, it will disappear in desktop view)-->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Content in the Bootstrap Nav Bar for mobile/desktop view -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Music List</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link makeWhite"
+                aria-current="page"
+                href="addMusic.html"
+                >Add Music</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="navigation.html"
+                >How to navigate?</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Bootstrap Modal component, consisting on the a) Button (to trigger modal) & b) Modal itself -->
+    <div class="center-div">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-light"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
+        id="addNewMusicBtn"
+      >
+        Add new music
+      </button>
+
+      <!-- Modal containing the 'Add Music' form inside it -->
+      <div
+        class="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">
+                Add Music 🎵🎶🎼
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <!-- Insert my Add Music Form inside the modal body -->
+              <div id="addMusicFormDiv">
+                <div>
+                  <h1>Add Music</h1>
+                  <hr />
+                </div>
+                <!-- Github pages does not support POST request in forms, hence change to GET request FYI -->
+                <!-- Refer to: https://stackoverflow.com/questions/67921950/why-does-it-show-error-405-not-allowed-using-github-pages for more info-->
+                <form action="process.html" method="GET" id="addMusicForm">
+                  <div id="formFirstDiv">
+                    <div class="individualDiv">
+                      <div id="div_left">
+                        <p>Title:</p>
+                      </div>
+                      <div id="div_right">
+                        <p>
+                          <input
+                            type="text"
+                            id="musicName"
+                            name="musicName"
+                            maxlength="100"
+                          />
+                        </p>
+                      </div>
+                    </div>
+                    <div class="individualDiv">
+                      <div id="div_left">
+                        <p>Genre:</p>
+                      </div>
+                      <div id="div_right">
+                        <p>
+                          <select id="musicType" name="musicType">
+                            <!--
+                              a) The first three option tags are not invalid options.
+                                - The first option tag, if selected, will show 'Genre of music is required.' error
+                                - While the second and third option tag(s), if selected, will show 'Genre must be a valid music genre during submission.' error
+                              b) There are only FOUR valid music types - they are "Classical", "Funk", "Rock", and "Pop".
+                            -->
+                            <option value="">Select a Type</option>
+                            <option value="invalid">Invalid music type</option>
+                            <option value="invalid">City Hall</option>
+                            <option value="Classical">Classical</option>
+                            <option value="Funk">Funk</option>
+                            <option value="Rock">Rock</option>
+                            <option value="Pop">Pop</option>
+                          </select>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="individualDiv">
+                      <div id="div_left">
+                        <p>Artist:</p>
+                      </div>
+                      <div id="div_right">
+                        <p>
+                          <input
+                            type="text"
+                            id="musicArtist"
+                            name="musicArtist"
+                            maxlength="100"
+                          />
+                        </p>
+                      </div>
+                    </div>
+                    <div class="individualDiv">
+                      <div id="div_left">
+                        <p>Release:</p>
+                      </div>
+                      <div id="div_right">
+                        <p id="releaseField">
+                          <input
+                            type="radio"
+                            id="musicRelease_Yes"
+                            name="musicRelease"
+                            value="yes"
+                          />
+                          <label for="musicRelease_Yes">Yes</label>
+                          <input
+                            type="radio"
+                            id="musicRelease_No"
+                            name="musicRelease"
+                            value="no"
+                          />
+                          <label for="musicRelease_No">No</label>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="individualDiv">
+                      <div id="div_left">
+                        <p>Duration (min.ss):</p>
+                      </div>
+                      <div id="div_right">
+                        <p>
+                          <input
+                            type="text"
+                            id="musicDuration"
+                            name="musicDuration"
+                            maxlength="10"
+                          />
+                        </p>
+                      </div>
+                    </div>
+                    <div class="individualDiv">
+                      <div id="div_left">
+                        <p>Image URL:</p>
+                      </div>
+                      <div id="div_right">
+                        <p>
+                          <input
+                            type="text"
+                            id="musicImageURL"
+                            name="musicImageURL"
+                          />
+                        </p>
+                      </div>
+                    </div>
+                    <div class="individualDiv">
+                      <div id="div_left">
+                        <p>Music URL:</p>
+                      </div>
+                      <div id="div_right">
+                        <p>
+                          <input type="text" id="musicURL" name="musicURL" />
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="formSecondDiv">
+                    <p>Description:</p>
+                    <textarea
+                      id="musicDescription"
+                      name="musicDescription"
+                      rows="4"
+                      maxlength="250"
+                    ></textarea>
+                    <div id="numberOfCharacters"></div>
+                    <input
+                      type="submit"
+                      id="btnSubmit"
+                      class="button"
+                      onclick="validateMusicDetails(event);"
+                    />
+                    <input type="reset" id="btnReset" class="button" />
+                  </div>
+                </form>
+                <div id="divMessage"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      © 2022
+      <a
+        href="https://github.com/melvincwng"
+        target="_blank"
+        rel="noopener noreferrer"
+        id="footerLink"
+      >
+        &nbsp;Melvin Ng</a
+      >
+    </footer>
+  </body>
+</html>
