@@ -2,7 +2,7 @@
 
 WMP Assignment 1
 
-This music web application allows a user to add, view and play music.
+This music web application allows you to add, remove, view, and play music.
 
 This is a front-end web app made using HTML, CSS, JS, jQuery, Bootstrap and DOMPurify.
 
