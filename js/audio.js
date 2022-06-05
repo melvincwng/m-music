@@ -2,9 +2,14 @@
 // This part of the script grabs all the musicDetails stored in localStorage (if any), which is in string format
 // Then, we split that string from localStorage by the "---(NEXT_MUSIC)---" separator which we added earlier
 // To get an array of individual musics (listOfMusics)
+// However, due to the deletion mechanism that's implemented, it was noticed there were leftover "---(NEXT_MUSIC)---" strings that can be present in localStorage
+// This means that after we split that string to get the listOfMusics array...take note each element in that array can either be a A) valid music element OR B) '' empty string
+// Hence, after retrieval from localStorage, we then need to filter the elements in that array and only return those which are actual music elements
+// Or else, you will notice empty divs with padding-right: 16px when you delete some of the songs (caused by the empty string '' music elements), which doesn't look good in the UI side
 let listOfMusics =
   window.localStorage.getItem("musicDetails")?.split("---(NEXT_MUSIC)---") ||
   [];
+listOfMusics = listOfMusics.filter((musicElement) => musicElement !== "");
 
 // Part 2:
 // A function written to display the music from localStorage
