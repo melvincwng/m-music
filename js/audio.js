@@ -159,14 +159,37 @@ function deleteSelectedMusic(event) {
 
 // Part 5:
 // A function to reset music body in index.html
-// If there are no music stored in localStorage, we then "reset" musicBody (a div container)'s innerHTML to contain 'Empty' string
+// If there are no music stored in localStorage, we then need to "reset" musicBody (a div container)'s innerHTML to show 'Empty' string
 function resetMusicBody() {
   document.getElementById("musicBody").innerHTML = "Empty";
   localStorage.removeItem("musicDetails");
 }
-!localStorage.getItem("musicDetails") && resetMusicBody();
 
 // Part 6:
+// A utility function that checks whether localStorage contains any music
+// If it does not, localStorage will either return a) null OR b) '---(NEXT_MUSIC)---' leftover strings (this happens when you add the same song multiple times & then remove it)
+function localStorageHasNoMusic() {
+  const storedDetails = localStorage.getItem("musicDetails");
+
+  if (!storedDetails) {
+    // No details stored in localStorage
+    return true;
+  } else {
+    // Got details stored in localStorage:
+    //    - A) Can be valid music details OR
+    //    - b) Leftover ---(NEXT_MUSIC)--- strings aka invalid/no music
+    const splitArray = storedDetails.split("---(NEXT_MUSIC)---");
+    const rejoinedMusicString = splitArray.join("");
+
+    // If it's A) ---> the rejoinedMusicString will not be an empty string
+    // If it's B) ---> after splitting the string, we will get an array of only empty strings. Hence when rejoin back, we get back empty string.
+    if (!rejoinedMusicString) return true;
+  }
+}
+
+localStorageHasNoMusic() && resetMusicBody();
+
+// Part 7:
 // This part of the script only allows 1 audio to be played at any time (prevent multiple audios from being played)
 const audios = document.querySelectorAll("audio");
 
@@ -182,7 +205,7 @@ function stopOtherAudios(event) {
   }
 }
 
-// Part 7:
+// Part 8:
 // This part of the script also adds a padding-right of 16px for each music element ONLY IN desktop view.
 // And removes that 16px padding-right in mobile view
 function isMobileView() {
