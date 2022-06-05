@@ -37,6 +37,10 @@
   flex-direction: column;
 }
 
+#musicDuration {
+  margin-top: 0.5rem;
+}
+
 .individualDiv {
   display: flex;
 }
@@ -127,9 +131,13 @@ label {
 }
 
 /* Adjust mobile responsiveness/view of Add Music Form in small phones <= 320px in width - e.g. iphone 4 & smaller */
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 360px) {
   .individualDiv {
     flex-direction: column;
+  }
+
+  #musicDuration {
+    margin-top: 0;
   }
 
   p {
