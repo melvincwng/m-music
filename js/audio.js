@@ -154,7 +154,7 @@ function deleteSelectedMusic(event) {
 
   // Alert the user that the song is deleted and then refresh the page
   alert("Music deleted 🗑️!");
-  window.location.reload();
+  window.location.href = "./index.html";
 }
 
 // Part 5:
