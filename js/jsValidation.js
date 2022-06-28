@@ -27,7 +27,8 @@ function validateMusicDetails(event) {
 
   /* Validation checks (Pseudo-code):
       1. All fields cannot be empty
-      2. musicGenre cannot be an invalid music type
+      2a. musicGenre cannot be an invalid music type
+      2b. *NEW* musicGenre, if someone inspect the DOM, and manipulate the value --> e.g. change from 'Funk' to 'Funkkyy', the form should fail
       3. musicDuration:
           a) cannot contain alphabets or special characters (aka must be a NUMBER), and
           b) must be only up to 2 decimal places, and
@@ -45,8 +46,12 @@ function validateMusicDetails(event) {
     !musicURL ||
     !musicDescription;
 
-  // 2) Validation check to check for 'invalid' music genres
-  const invalidMusicGenre = musicGenre === "invalid";
+  // 2a) Validation check to check for 'invalid' music genres
+  // 2b) Recall the edge case mentioned by lecturer during the presentation exam - i.e. if someone inspect the DOM form (change from 'Funk' to 'Funkky', the form should fail)
+  const listOfValidMusicGenreValues = ["Classical", "Funk", "Rock", "Pop"];
+  const musicGenreNotInThisList =
+    !listOfValidMusicGenreValues.includes(musicGenre);
+  const invalidMusicGenre = musicGenre === "invalid" || musicGenreNotInThisList;
 
   // 3a) Validation check to check whether music duration is of the correct format (min.ss) (e.g. 12.30 --> 12min 30sec)
   // 3b) Added additional validation checks for music duration:
@@ -170,7 +175,9 @@ function validateMusicDetails(event) {
         // In the musicDetailsArray, 'musicGenre' is at index 1, and it's value can also be an "invalid" string.
         // If so, add the corresponding error message to finalErrorMessage
         // This is for index 7 of the errorMessageObject
-        if (i === 1 && musicDetailsArray[i] === "invalid") {
+        if (
+          i === 1 && (musicDetailsArray[i] === "invalid" || musicGenreNotInThisList)
+        ) {
           finalErrorMessage += errorMessageObject[7];
         }
       }
@@ -182,6 +189,8 @@ function validateMusicDetails(event) {
     if (!musicURLValid) finalErrorMessage += musicURLInvalidErrorMessage;
 
     errorMessage.innerHTML = finalErrorMessage;
+
+    console.log(errorMessage);
 
     // The logic of this utility function is found in removeErrorMessages.js
     addEventListenersToRemoveErrorMsg();
