@@ -176,7 +176,8 @@ function validateMusicDetails(event) {
         // If so, add the corresponding error message to finalErrorMessage
         // This is for index 7 of the errorMessageObject
         if (
-          i === 1 && (musicDetailsArray[i] === "invalid" || musicGenreNotInThisList)
+          i === 1 &&
+          (musicDetailsArray[i] === "invalid" || musicGenreNotInThisList)
         ) {
           finalErrorMessage += errorMessageObject[7];
         }
@@ -189,8 +190,6 @@ function validateMusicDetails(event) {
     if (!musicURLValid) finalErrorMessage += musicURLInvalidErrorMessage;
 
     errorMessage.innerHTML = finalErrorMessage;
-
-    console.log(errorMessage);
 
     // The logic of this utility function is found in removeErrorMessages.js
     addEventListenersToRemoveErrorMsg();
