@@ -71,7 +71,7 @@ function validateMusicDetails(event) {
       const splitArray = musicDuration.split(".");
       const seconds = splitArray[1];
 
-      // check seconds are in correct format (ss -> e.g. 58 is OK, but not 5 or 500 aka 1dp & 3 dp NOT ALLOWED, but 2dp ALLOWD)
+      // check seconds are in correct format (ss -> e.g. 58 is OK, but not 5 or 500 aka 1dp & 3 dp NOT ALLOWED, but 2dp ALLOWED)
       if (seconds.length === 2) {
         secondsCorrectFormat = true;
       }
