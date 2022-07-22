@@ -42,7 +42,16 @@ self.addEventListener("fetch", function (event) {
   console.log("Fetch:", event.request.url);
   event.respondWith(
     caches.match(event.request).then(function (response) {
-      return response || fetch(event.request);
+      return (
+        response ||
+        fetch(event.request).then(function (response) {
+          let responseClone = response.clone();
+          caches.open(CACHE_VER).then(function (cache) {
+            cache.put(event.request, responseClone);
+          });
+          return response;
+        })
+      );
     })
   );
 });
